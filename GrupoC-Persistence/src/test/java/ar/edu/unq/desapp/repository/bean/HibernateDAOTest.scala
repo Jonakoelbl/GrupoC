@@ -6,9 +6,12 @@ import org.scalatest.matchers.ShouldMatchers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestContextManager
-
 import ar.edu.unq.desapp.model.bean.Book
 import ar.edu.unq.desapp.utils.builder.Builder
+import ar.edu.unq.desapp.model.bean.LoanBook
+import org.joda.time.DateTime
+import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 @ContextConfiguration( Array("classpath:/META-INF/spring-persistence-context.xml", "classpath:/spring/*.xml"))
 class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen with Builder {
@@ -18,6 +21,10 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
   var bookRepository: BookRepository = _
   @Autowired
   var userRepository: UserRepository = _
+  @Autowired
+  var authorRepository: AuthorRepository = _
+  @Autowired
+  var loanBookRepository: LoanBookRepository = _
   
   describe("Hibernate BookRepository") {
     it("should work all the functionality save and delete of the BookRepository") {
@@ -108,8 +115,9 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     
     ignore("should save the authors to the book") {
       Given("one book with one Author")
-      val author_bookA = anAuthor.withName("Julio Cortazar").build :: Nil 
-      val bookA: Book = aBook.withAuthors(author_bookA).build
+      val author_bookA = anAuthor.withName("Julio Cortazar").build 
+      authorRepository.save(author_bookA)
+      val bookA: Book = aBook.withAuthors(author_bookA :: Nil).build
       
       When("save the books with authors")
       bookRepository.save(bookA)
@@ -117,7 +125,7 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       Then("should get book with the author")
       val bookA_saved = bookRepository.findByExample(bookA)(0)
       
-      bookA_saved should have('authors(author_bookA))
+      bookA_saved should have('authors(author_bookA :: Nil))
     }
     
     it("should modify a book") {
@@ -138,6 +146,45 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
     		 			'title("Moby Dick, The whale"), 
     		 			'description("Write by Herman Melville"), 
     		 			'isbn("isbn-0123"))
+    }
+    
+    it("loan book repository") {
+      
+      val bookA = aBook
+      				.withTitle("Alguien que anda por ahi")
+      				.withIsbn("isbn-1231")
+      				.withEditorial("Editorial Argentina")
+      				.withDescription("Libro por Julio Cortazar").build
+      val bookB = aBook
+      				.withTitle("El alquimista")
+      				.withIsbn("isbn-234")
+      				.withEditorial("Editorial-A")
+      				.withDescription("Libro escrito por Pablo Cohelo").build
+
+      				
+      val userA = anUser.build	
+      val userB = anUser.withName("asdasd").build
+      bookRepository.save(bookA)
+      bookRepository.save(bookB)
+      userRepository.save(userA)
+      userRepository.save(userB)
+      
+      val loanBookA = new LoanBook(new DateTime, new DateTime)
+      loanBookA.book = bookA
+      loanBookA.user = userA
+      val loanBookB = new LoanBook(new DateTime, new DateTime)
+      loanBookB.book = bookB
+      loanBookB.user = userB
+      val loanBookC = new LoanBook(new DateTime, new DateTime)
+      loanBookC.book = bookA
+      loanBookC.user = userB
+      
+      loanBookRepository.save(loanBookA)
+      loanBookRepository.save(loanBookB)
+      loanBookRepository.save(loanBookC)
+      
+      var loanBooks: List[LoanBook] = loanBookRepository.findTheTwentyMostBorrowedBook.toList
+      loanBooks.size should be(1)
     }
   }
 }

@@ -15,4 +15,4 @@ class LoanBookService extends GenericService[LoanBook] {
   def retriveAllMostBorrowed: java.util.List[LoanBook] = {
 	loanBookDAO.findTheTwentyMostBorrowedBook
   }
-}
+ }

@@ -15,7 +15,7 @@ class LoanBookRepository extends HibernateGenericDAO[LoanBook] {
   
   def findTheTwentyMostBorrowedBook: java.util.List[LoanBook] = {
     var criteria = this.getSession().createCriteria(this.persistentClass)
-    var proList = Projections.projectionList() 
+    var proList = Projections.projectionList()
     
     proList.add(Projections.distinct(Projections.countDistinct("book")))
     criteria.setProjection(proList).list().asInstanceOf[java.util.List[LoanBook]]
