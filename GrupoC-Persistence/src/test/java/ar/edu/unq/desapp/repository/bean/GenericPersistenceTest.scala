@@ -20,22 +20,14 @@ class GenericPersistenceTest extends FunSpec with ShouldMatchers with GivenWhenT
   @Resource(name="hibernateGeneric")
   var repository: HibernateGenericDAO[java.lang.Object] = _
   
-  private def getAllMainClassBuilders: List[_ <: BuilderToTest[_]] = {
-    val books = Nil
-    val books_written = Nil
-    val comments = Nil
-    
-    return  List(
-    		anUser.withName("Nadie").withEmail("Ninguno").withPassword("Boludo").withBorrowedBooks(books),
-    		aBook.withTitle("book?").withEditorial("what editorial?").withIsbn("what is that?").withAmount(2).withComments(comments),
-    		anAuthor.withName("Erudito").withWrittenBooks(books_written)
+  var entities = List(
+    		anUser.withName("Nadie").withEmail("Ninguno").withPassword("Boludo"),
+    		aBook.withTitle("book?").withEditorial("what editorial?").withIsbn("what is that?").withAmount(2)
     		)
-  }
-  
+    		
   describe("Persistence all Entities ") {
-    ignore("all entities should be persisted") {
-    	val builders = this.getAllMainClassBuilders
-    	
+    it("all entities should be persisted") {
+    	val builders = entities 
     	for(builder <- builders) {
     	  val obj = builder.build
     	  try {
@@ -46,8 +38,8 @@ class GenericPersistenceTest extends FunSpec with ShouldMatchers with GivenWhenT
     	}
     }
     
-    it("Save and retrieve all entities") {
-      val builders = this.getAllMainClassBuilders
+    ignore("Save and retrieve all entities") {
+      val builders = entities
       
       for(builder <- builders) {
         val obj = builder.build

@@ -13,10 +13,10 @@ import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSessio
 import ar.edu.unq.desapp.view.security.WebSession
 import org.apache.wicket.markup.html.WebPage
 import ar.edu.unq.desapp.model.bean.Book
-
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import ar.edu.unq.desapp.utils.builder.Builder
+import ar.edu.unq.desapp.model.example.DataFake
 
 class HomeApplication extends AuthenticatedWebApplication with ApplicationContextAware with Builder{
   
@@ -61,6 +61,19 @@ class HomeApplication extends AuthenticatedWebApplication with ApplicationContex
   }
 
   private def generateData {
-    generalService.bookService.save(aBook.build)
+    generalService.bookService.save(DataFake.bookA)
+    generalService.bookService.save(DataFake.bookB)
+    generalService.bookService.save(DataFake.bookC)
+    generalService.bookService.save(DataFake.bookD)
+    
+    generalService.userService.save(DataFake.userA)
+    generalService.userService.save(DataFake.userB)
+    generalService.userService.save(DataFake.userC)
+    generalService.userService.save(DataFake.userD)
+    generalService.userService.save(DataFake.userE)
+    
+    for(loan <- DataFake.generateLoan) {
+    	generalService.loanBookService.save(loan)
+    }
   }
 }

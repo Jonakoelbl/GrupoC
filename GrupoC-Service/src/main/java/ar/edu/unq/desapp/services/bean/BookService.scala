@@ -18,11 +18,9 @@ class BookService extends GenericService[Book] {
   var loanBookRepository: LoanBookRepository = _
   
   def retriveAllMostBorrowed: java.util.List[Book] = {
-	var loanBooks: List[LoanBook] = loanBookRepository.findTheTwentyMostBorrowedBook.toList
+	var loanBooks: java.util.List[LoanBook] = loanBookRepository.findTheTwentyMostBorrowedBook
 	var allMostBorrowedBooks: List[Book] = List()
-	for(loanBook <- loanBooks) {
-	  allMostBorrowedBooks = loanBook.book :: allMostBorrowedBooks
-	}
+	loanBooks.foreach(b => b.book :: allMostBorrowedBooks)
 	allMostBorrowedBooks
   }
 }

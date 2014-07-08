@@ -13,38 +13,8 @@ import scala.collection.JavaConverters._
 class BookListAppModel(var bookService: BookService) extends Serializable with Builder {
   
   var books: java.util.List[Book] = bookService.retriveAll//new util.ArrayList
-  
-  var books1: java.util.List[Book] = new util.ArrayList
-  books1.add(
-		aBook.build
-	)
-  books1.add(
-    aBook.withTitle("Test2").build
-  )
-  books1.add(
-    aBook.withDescription("This is a book").build
-  )
-  books1.add(
-    aBook.withEditorial("NanaEditorial").build
-  )
-  books1.add(
-    aBook.withIsbn("234567890").build
-  )
-  books1.add(
-    aBook.build
-  )
-  books1.add(
-    aBook.build
-  )
-  books1.add(
-    aBook.build
-  )
 
   def getBooks: java.util.List[Book] = {
-    bookService
-    for (book <- this.books1) {
-      bookService.save(book)
-    }
     bookService.retriveAll
   }
   
@@ -53,10 +23,10 @@ class BookListAppModel(var bookService: BookService) extends Serializable with B
   }
 
   def getReservationsAmount(aBook: Book): Int = {
-    1 // Service.getAmount(aBook) // TODO - Use service to get needed info
+    aBook.amount 
   }
 
   def deleteBook(aBook: Book) {
-    // TODO - Service.deleteBook(aBook)
+    bookService.delete(aBook)
   }
 }

@@ -17,6 +17,8 @@ class User (
   @BeanProperty
   var password: String) {
  
+  private val serialVersionUID: Long = 1L
+  
   @Id @GeneratedValue
   var id: Int = _
 
