@@ -183,7 +183,7 @@ class HibernateDAOTest extends FunSpec with ShouldMatchers with GivenWhenThen wi
       loanBookRepository.save(loanBookB)
       loanBookRepository.save(loanBookC)
       
-      var loanBooks: List[LoanBook] = loanBookRepository.findTheTwentyMostBorrowedBook.toList
+      var loanBooks: List[LoanBook] = loanBookRepository.findAll.toList
       loanBooks.size should be(1)
     }
   }

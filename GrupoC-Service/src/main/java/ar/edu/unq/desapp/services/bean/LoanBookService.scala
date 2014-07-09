@@ -8,11 +8,4 @@ import javax.annotation.Resource
 class LoanBookService extends GenericService[LoanBook] {
 	
   private val serialVersionUID: Long = 1L
-  
-  @Resource
-  var loanBookDAO: LoanBookRepository= _
-  
-  def retriveAllMostBorrowed: java.util.List[LoanBook] = {
-	loanBookDAO.findTheTwentyMostBorrowedBook
-  }
  }

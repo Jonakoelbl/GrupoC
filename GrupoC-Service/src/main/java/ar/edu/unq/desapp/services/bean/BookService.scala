@@ -18,9 +18,16 @@ class BookService extends GenericService[Book] {
   var loanBookRepository: LoanBookRepository = _
   
   def retriveAllMostBorrowed: java.util.List[Book] = {
-	var loanBooks: java.util.List[LoanBook] = loanBookRepository.findTheTwentyMostBorrowedBook
-	var allMostBorrowedBooks: List[Book] = List()
-	loanBooks.foreach(b => b.book :: allMostBorrowedBooks)
-	allMostBorrowedBooks
+	val loanBooks: java.util.List[LoanBook] = loanBookRepository.findAll
+	var allMostBorrowedBooks: Map[Book, Int] = Map()
+	for(loan <- loanBooks) { //I know, it's horrible
+	  if(allMostBorrowedBooks.contains(loan.book)) {
+	    allMostBorrowedBooks.updated(loan.book, allMostBorrowedBooks.get(loan.book))
+	  }
+	  else {
+	    allMostBorrowedBooks += (loan.book -> 1)
+	  }
+	}
+	allMostBorrowedBooks.keySet.toList
   }
 }
