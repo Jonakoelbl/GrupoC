@@ -6,14 +6,12 @@ import scala.beans.BeanProperty
 
 class GenericService[T] extends Serializable {
 
-  private val serialVersionUID: Long = -6540963495078524186L
-
   @BeanProperty
   var repository: GenericRepository[T] = _
-  
+
   @Transactional
   def save(obj: T) {
-    this.repository.save(obj);
+    this.repository.save(obj)
   }
 
   @Transactional(readOnly = true)
@@ -23,7 +21,7 @@ class GenericService[T] extends Serializable {
 
   @Transactional
   def update(obj: T) {
-    this.repository.update(obj);
+    this.repository.update(obj)
   }
 
   @Transactional
@@ -38,6 +36,6 @@ class GenericService[T] extends Serializable {
 
   @Transactional
   def retriveAll: List[T] = {
-    this.repository.findAll;
+    this.repository.findAll
   }
 }

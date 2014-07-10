@@ -1,31 +1,20 @@
 package ar.edu.unq.desapp.view.model
 
-import org.apache.wicket.markup.html.WebPage
-import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.markup.html.form.PasswordTextField
-import org.apache.wicket.markup.html.form.RequiredTextField
+import ar.edu.unq.desapp.view.security.ScalaBaseProjectSession
+import org.apache.wicket.markup.html.form.{Form, PasswordTextField, RequiredTextField}
+import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.html.panel.FeedbackPanel
 import org.apache.wicket.model.CompoundPropertyModel
-import org.apache.wicket.request.mapper.parameter.PageParameters
-import scala.collection.JavaConversions._
-import ar.edu.unq.desapp.view.security.ScalaBaseProjectSession
 
-class LoginPage(parameters: PageParameters) extends HeadBlankPage {
+class LoginPage extends HeadBlankPage {
 
   add(new LoginForm("loginform"))
 
-  //TODO - Refactor
-  def this() {
-    this(null)
-  }
+  private class LoginForm(id: String) extends Form[LoginObject](id) {
 
-  private class LoginForm(id: String) extends Form(id) {
+    val loginObject = new LoginObject
 
-    private var username: String = _
-
-    private var password: String = _
-
-//    setModel(new CompoundPropertyModel(this))
+    setModel(new CompoundPropertyModel(loginObject))
 
     add(new RequiredTextField("username"))
 
@@ -33,13 +22,20 @@ class LoginPage(parameters: PageParameters) extends HeadBlankPage {
 
     add(new FeedbackPanel("feedback"))
 
-    protected override def onSubmit() {
+    add(new BookmarkablePageLink[SignInPage]("register", classOf[SignInPage]))
+
+    override def onSubmit() {
       val session = ScalaBaseProjectSession.getSession()
-      if (session.signIn(username, password)) {
+      if (session.signIn(loginObject.username, loginObject.password)) {
         LoginForm.this.setResponsePage(classOf[HomePage])
       } else {
-        error(getString("login.failed"))
+        error(getString("login_failed"))
       }
     }
   }
+}
+
+class LoginObject {
+  var username: String = _
+  var password: String = _
 }

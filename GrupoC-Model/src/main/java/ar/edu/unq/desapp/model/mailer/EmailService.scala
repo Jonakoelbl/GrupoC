@@ -11,7 +11,7 @@ import org.apache.commons.mail.DefaultAuthenticator
 class EmailService {
 
  def sendNotification(user: User, aBorrowedBook: Book) {
-   var email = new SimpleEmail()
+   val email = new SimpleEmail()
    email.setHostName("smtp.googlemail.com")
    email.setSmtpPort(465)
    email.setAuthenticator(new DefaultAuthenticator("librarySystem", "lalala"))

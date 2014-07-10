@@ -1,14 +1,14 @@
 package ar.edu.unq.desapp.model.bean
 
-import java.awt.Image
-import ar.edu.unq.desapp.model.management.LibrarySystem
 import javax.persistence._
 
 @Entity
 @Table
 @PrimaryKeyJoinColumn(name = "id_user")
 class Librarian(username: String, email: String, password: String)
-  extends User(username, email, password) {
+  extends User(username, email, password)
+
+//{
 
 //  def addBookToSystem(book: Book, cant: Int = 1) {
 //    librarySystem manualBookLoad (book, cant)
@@ -29,7 +29,7 @@ class Librarian(username: String, email: String, password: String)
 //  def configureMaxDaysOfLoan(maxDate: Int) {
 //    librarySystem.configLoan.maxDaysOfLoan = maxDate
 //  }
-
+//
 //  def registerUser(username: String, email: String, password: String, typeUser: String) {
 //    //TODO validate if exist an user with same email
 //    typeUser match {
@@ -37,4 +37,4 @@ class Librarian(username: String, email: String, password: String)
 //      case "Librarian" => librarySystem.users = new Librarian(username, email, password, librarySystem) :: librarySystem.users
 //    }
 //  }
-}
+//}

@@ -1,10 +1,11 @@
 package ar.edu.unq.desapp.model.bean
 
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-
 import javax.persistence._
-import beans.BeanProperty
+
+import org.hibernate.annotations.IndexColumn
+
+import scala.beans.BeanProperty
+import scala.collection.JavaConversions._
 
 @Entity
 @Table(name = "users")
@@ -18,17 +19,19 @@ class User (
   var password: String) {
  
   @Id @GeneratedValue
+  @Column(name = "id")
   var id: Int = _
 
   @BeanProperty
-  @ElementCollection
+  @ElementCollection(fetch = FetchType.EAGER)
+  @IndexColumn(name = "id")
   var rols: java.util.List[String] = _
   
   @BeanProperty
   @OneToMany
   var borrowedBooks: java.util.List[Book] = _
 
-  private def this() = this(null, null, null)
+  def this() = this(null, null, null)
   
   def borrowBook(aBook: Book) {
     borrowedBooks = aBook :: borrowedBooks.toList
@@ -41,5 +44,11 @@ class User (
 
   def commentBook(aBook: Book, aComment: String) {
     aBook.addComment(this, aComment)
+  }
+
+  def addRole(rols: String*) {
+    for (rol <- rols) {
+      this.rols.add(rol)
+    }
   }
 }

@@ -13,6 +13,8 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.context.SecurityContextHolder
 import scala.collection.JavaConversions._
+import scala.beans.BeanProperty
+import ar.edu.unq.desapp.model.bean.User
 
 object ScalaBaseProjectSession {
 
@@ -27,7 +29,10 @@ class ScalaBaseProjectSession(request: Request) extends AuthenticatedWebSession(
   @SpringBean(name = "authenticationManager")
   private var authenticationManager: AuthenticationManager = _
 
-  injectDependencies()
+  @BeanProperty
+  var userSession: User = _
+
+  this.injectDependencies()
 
   def add(key: String, value: Serializable) {
     setAttribute(key, value)
@@ -37,7 +42,9 @@ class ScalaBaseProjectSession(request: Request) extends AuthenticatedWebSession(
     removeAttribute(key)
   }
 
-//  def get(key: String): AnyRef = getAttribute(key)
+  //  def getSession: ScalaBaseProjectSession = {
+  //    Session.get().asInstanceOf[ScalaBaseProjectSession]
+  //  }
 
   private def injectDependencies() {
     Injector.get.inject(this)

@@ -1,5 +1,5 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-	<br />
+	<br>
 	<div class="container page-header">
 		<div style="float: left">
 			<a id="linkToHomePage" wicket:id="linkToHomePage">
@@ -8,32 +8,44 @@
 		</div>
 
 		<div style="float: left">
-			<h2><wicket:message key="appTitle">Library System</wicket:message></h2>
-			<p><wicket:message key="subtitle">appSubtitle</wicket:message></p>
+			<h2><wicket:message key="appTitle" /></h2>
+			<p><wicket:message key="subtitle" /></p>
 		</div>
 	</div>
 
 	<div class="container">
-		<br />
-		<div style="float: right">
-			<button class="btn btn-default"><a href="j_spring_security_logout"><wicket:message key="logout">Logout</wicket:message></a></button>
-		</div>
+		<br>
+        <!-- Searchbox -->
+        <div style="float: right">
+        <form class="form-search" style="float: left">
+            <input wicket:id="search" type="text" class="span2 search-query form-control" />
+        </form>
+        <form style="float: right">
+            <button wicket:id="btn-search" type="submit" class="btn btn-default"><wicket:message key="btn-search" /></button>
+            <button wicket:id="profile" class="btn btn-default"><wicket:message key="btn-profile" /></button>
+            <button wicket:id="logout" class="btn btn-default">
+                <a href="j_spring_security_logout"><wicket:message key="btn-logout" /></a>
+                <!--<wicket:message key="btn-logout" />-->
+            </button>
+        </form>
+        </div>
 		<ul class="nav nav-tabs">
 			<!-- Navigation -->
 			<li><a wicket:id="BookList">
-                <wicket:message key="bookList">Book List</wicket:message></a>
+                <wicket:message key="bookList" /></a>
             </li>
 		    <li><a wicket:id="RankingBorrowedBook">
-                <wicket:message key="rankingList">Ranking Borrowed Book</wicket:message></a>
+                <wicket:message key="rankingList" /></a>
             </li>
 		    <li><a wicket:id="AddBook">
-                <wicket:message key="addBook">Add Book</wicket:message></a>
+                <wicket:message key="addBook" /></a>
             </li>
 
-            <li><a wicket:id="TestGoogleAPIService">Test GoogleAPI Service</a></li>
+            <li><a wicket:id="AddApiBook">
+                <wicket:message key="addBookIsbn" /></a></li>
 	    </ul>
     </div>
-		
+
 	<div class="container">
 		<!-- Content -->
 		<div class="content">
@@ -42,8 +54,8 @@
 	</div>
 
 	<!-- Footer -->
-	<br />
-	<br />
+	<br>
+	<br>
 	<div class="container footer">
 		<wicket:message key="powered">Powered-by</wicket:message>
 	</div>

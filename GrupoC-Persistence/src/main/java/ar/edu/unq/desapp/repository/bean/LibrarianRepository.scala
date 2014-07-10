@@ -1,14 +1,9 @@
 package ar.edu.unq.desapp.repository.bean
 
-import ar.edu.unq.desapp.repository.generic.HibernateGenericDAO
 import ar.edu.unq.desapp.model.bean.Librarian
-
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
+import ar.edu.unq.desapp.repository.generic.HibernateGenericDAO
 
 class LibrarianRepository extends HibernateGenericDAO[Librarian] {
 
-  private val serialVersionUID: Long = -854399694634099004L
-  
   persistentClass = classOf[Librarian]
 }

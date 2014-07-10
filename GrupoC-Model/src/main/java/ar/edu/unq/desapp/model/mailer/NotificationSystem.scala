@@ -33,6 +33,6 @@ class NotificationSystem {
       case Some(users) => users.foreach(user => mailer.sendNotification(user, aBook))
       case None => Nil
     }
-    users = users - (aBook)
+    users = users - aBook
   }
 }

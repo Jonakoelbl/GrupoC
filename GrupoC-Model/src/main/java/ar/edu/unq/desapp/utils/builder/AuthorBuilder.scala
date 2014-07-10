@@ -1,10 +1,8 @@
 package ar.edu.unq.desapp.utils.builder
 
-import ar.edu.unq.desapp.model.bean.Author
-import ar.edu.unq.desapp.model.bean.Book
+import ar.edu.unq.desapp.model.bean.{Author, Book}
 
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 
 class AuthorBuilder extends BuilderToTest[Author] {
 	
@@ -22,7 +20,7 @@ class AuthorBuilder extends BuilderToTest[Author] {
   }
   
   override def build: Author = {
-    var author = new Author(name)
+    val author = new Author(name)
     author.writtenBooks = writtenBooks
     author
   }

@@ -1,10 +1,6 @@
 package ar.edu.unq.desapp.model.management
 
-import java.util.ArrayList
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.model.bean.User
-import ar.edu.unq.desapp.model.bean.LoanConfiguration
-import javax.persistence.Entity
+import ar.edu.unq.desapp.model.bean.{Book, LoanConfiguration, User}
 
 class LibrarySystem (val configLoan: LoanConfiguration){
   var books: List[Book] = Nil
@@ -41,6 +37,6 @@ class LibrarySystem (val configLoan: LoanConfiguration){
   }
 
   def getBookByIsbn(anIsbn: String): Option[Book] = {
-    books find (b => (b.isbn.contentEquals(anIsbn)))
+    books find (b => b.isbn.contentEquals(anIsbn))
   }
 }

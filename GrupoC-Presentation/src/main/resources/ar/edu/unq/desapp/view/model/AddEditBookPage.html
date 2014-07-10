@@ -1,72 +1,63 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<div class="container">
-	    <table width="80%">
-            <tr>
-                <td>
-                    <h1 wicket:id="title">Title</h1>
-                </td>
-            </tr>
-        </table>
-        
+        <h1 wicket:id="title" />
+
         <form wicket:id="bookForm" class="form">
         	<fieldset>
-        	
-        	<!-- TODO - add amount (Maybe) -->
+
         	<div class="form-group">
-	        	<label class="control-label" for="book_title">Title</label>
+	        	<label class="control-label"><wicket:message key="title" /></label>
 	        	<div class="controls">
-	        		<input wicket:id="book_title" type="text"
-                           placeholder="Viaje al centro de la tierra" class="form-control" />
+	        		<input wicket:id="book_title" type="text" required
+                           placeholder="Ej: Viaje al centro de la tierra" class="form-control" />
 	        	</div>
         	</div>
         	
         	<div class="form-group">
-	        	<label class="control-label" for="book_isbn">Isbn</label>
+	        	<label class="control-label"><wicket:message key="isbn" /></label>
 	        	<div class="controls">
-	        		<input wicket:id="book_isbn" type="text"
-                           placeholder="IB-172TG34" class="form-control" />
+	        		<input wicket:id="book_isbn" type="text" required
+                           placeholder="Ej: IB-172TG34" class="form-control" />
 	        	</div>
         	</div>
         	
         	<div class="form-group">
-    			<label class="control-label" for="book_editorial">Editorial</label>
+    			<label class="control-label"><wicket:message key="editorial" /></label>
     			<div class="controls">
-    				<input wicket:id="book_editorial" type="text"
-                           placeholder="Pepitos editorial" class="form-control"/>
+    				<input wicket:id="book_editorial" type="text" required
+                           placeholder="Ej: Pepitos editorial" class="form-control"/>
     	    	</div>
         	</div>
 
             <div class="form-group">
-                <label class="control-label" for="book_imageUrl">Image Url</label>
+                <label class="control-label"><wicket:message key="image" /></label>
                 <div class="controls">
                     <input wicket:id="book_imageUrl" type="text"
-                           placeholder="http://goo.gl/UQDZMU" class="form-control" />
+                           placeholder="Ej: http://goo.gl/UQDZMU" class="form-control" />
                 </div>
             </div>
         	
         	<div class="form-group">
-    			<label class="control-label" for="book_description">Description</label>
+    			<label class="control-label"><wicket:message key="description" /></label>
     			<div class="controls">
-    				<textarea rows="3" wicket:id="book_description" type="text"
-                              placeholder="This is a description" class="form-control" />
+    				<textarea rows="3" wicket:id="book_description"
+                              placeholder="Ej: This is a description" class="form-control" />
     	    	</div>
         	</div>
 
             <div class="form-group">
-                <label class="control-label" for="book_authors">Authors</label>
+                <label class="control-label"><wicket:message key="authors" /></label>
                 <div class="controls">
-                    <input wicket:id="book_authors" type="text"
-                           placeholder="Julio Verne" class="form-control" />
+                    <input wicket:id="book_authors" type="text" required
+                           placeholder="Ej: Julio Verne" class="form-control" />
                 </div>
             </div>
         	
-            <div wicket:id="feedbackPanel" class="alert alert-error">
-					<strong>Warning!</strong> Best check yo self, you're not looking too good.  
-			</div>  
+            <div wicket:id="feedbackPanel" class="alert alert-error" />
 
             <div class="form-actions">
-                <button wicket:id="accept" type="submit" class="btn btn-primary">Accept</button>
-                <button wicket:id="cancel" type="submit" class="btn btn-default">Cancel</button>
+                <button wicket:id="accept" type="submit" class="btn btn-primary"><wicket:message key="btn-accept" /></button>
+                <button wicket:id="cancel" type="submit" class="btn btn-default" formnovalidate><wicket:message key="btn-cancel" /></button>
             </div>
             </fieldset>
         </form>

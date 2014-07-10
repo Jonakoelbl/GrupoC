@@ -1,40 +1,34 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<br />
-	<!-- Tab: List of books -->
-
-    <!-- Searchbox -->
-    <form class="form-search" style="float: right">
-        <input type="text" class="span2 search-query" />
-        <button type="submit" class="btn btn-default">Search</button>
-    </form>
-
     <!-- Book List Table -->
 	<form wicket:id="bookListForm">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <wicket:message key="table-title">Books on the system</wicket:message>
+                <wicket:message key="table-title" />
             </div>
             <table class="table table-striped table-condensed table-hover">
                 <tbody>
                     <tr class="thead"><!-- Table Headers -->
-                        <th><wicket:message key="row-title">Title</wicket:message></th>
-                        <th><wicket:message key="row-isbn">Isbn</wicket:message></th>
-                        <th><wicket:message key="row-regDate">Registration Date</wicket:message></th>
-                        <th><wicket:message key="row-reservations">Reservations</wicket:message></th>
-                        <th><wicket:message key="row-state">State</wicket:message></th>
-                        <th><wicket:message key="row-actions">Actions</wicket:message></th>
+                        <th><wicket:message key="row-title" /></th>
+                        <th><wicket:message key="row-isbn" /></th>
+                        <th><wicket:message key="row-regDate" /></th>
+                        <th><wicket:message key="row-amount" /></th>
+                        <th><wicket:message key="row-reservations" /></th>
+                        <th><wicket:message key="row-state" /></th>
+                        <th><wicket:message key="row-actions" /></th>
                     </tr><!-- /Table Headers -->
 
                     <tr wicket:id="books">
                         <td><p wicket:id="title" /></td>
                         <td><p wicket:id="isbn" /></td>
                         <td><p wicket:id="registrationDate" /></td>
-                        <td><p wicket:id="reservation" /></td>
+                        <td><p wicket:id="amount" /></td>
+                        <td><p wicket:id="reservations" /></td>
                         <td><p wicket:id="state" /></td>
-
                         <td><!-- Actions -->
-                            <button wicket:id="details" class="btn btn-link">Details</button>
-                            <button wicket:id="delete" class="btn btn-link">Delete</button>
+                            <button wicket:id="details" class="btn btn-link"><wicket:message key="details" /></button>
+                            <button wicket:id="reserve" class="btn btn-link"><wicket:message key="reserve" /></button>
+                            <button wicket:id="delete" class="btn btn-link"><wicket:message key="delete" /></button>
                         </td><!-- /Actions -->
                     </tr>
                 </tbody>

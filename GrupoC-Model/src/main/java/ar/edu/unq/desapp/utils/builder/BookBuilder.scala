@@ -1,20 +1,16 @@
 package ar.edu.unq.desapp.utils.builder
 
-import java.awt.Image
-import java.awt.image.BufferedImage
+import ar.edu.unq.desapp.model.bean.{Author, Book, Comment}
 import org.joda.time.DateTime
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.model.bean.Author
+
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-import ar.edu.unq.desapp.model.bean.Comment
 
 class BookBuilder extends BuilderToTest[Book] {
 
   var title: String = "no title"
   var isbn: String = "no isbn"
   var editorial: String = "no editorial"
-  var image: String = "no picture"
+  var image: String = "http://t2.gstatic.com/images?q=tbn:ANd9GcSaOsFcBu3jppknP5v6lzUI59V-aBvGTeNQ0MigpXHZfrLSOuLd"
   var description: String = "no description"
   var authors: List[Author] = Nil
   var comments: List[Comment] = Nil
@@ -67,7 +63,7 @@ class BookBuilder extends BuilderToTest[Book] {
   }
 
   def build: Book = {
-    var book = new Book(
+    val book = new Book(
       this.title,
       this.isbn,
       this.editorial,
@@ -75,7 +71,20 @@ class BookBuilder extends BuilderToTest[Book] {
       this.description,
       this.amount)
     
-    book.authors = this.authors
+    book.authors = this.authors.toList
+    clean()
     book
+  }
+
+  def clean() {
+    this.title = "no title"
+    this.isbn = "no isbn"
+    this.editorial = "no editorial"
+    this.image = "http://t2.gstatic.com/images?q=tbn:ANd9GcSaOsFcBu3jppknP5v6lzUI59V-aBvGTeNQ0MigpXHZfrLSOuLd"
+    this.description = "no description"
+    this.authors = Nil
+    this.comments = Nil
+    this.amount = 1
+    this.registrationDate = new DateTime
   }
 }

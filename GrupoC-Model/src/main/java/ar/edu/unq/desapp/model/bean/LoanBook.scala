@@ -1,16 +1,10 @@
 package ar.edu.unq.desapp.model.bean
 
+import javax.persistence.{Entity, GeneratedValue, Id, OneToOne, Table}
+
+import org.joda.time.{DateTime, Days}
+
 import scala.beans.BeanProperty
-
-import org.joda.time.DateTime
-import org.joda.time.Days
-
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Inheritance
-import javax.persistence.OneToOne
-import javax.persistence.Table
 
 @Entity 
 @Table(name = "loan_books")
@@ -29,13 +23,13 @@ class LoanBook(
   @OneToOne @BeanProperty
   var user: User = _
   
-  private def this() = this(null, null)
+  def this() = this(null, null)
   
   def isOutOfDate: Boolean = {
     dateOfLoan.isAfter(refundDate)
   }
 
   def amountDaysBetweenLoanAndRefund: Int = {
-    Days.daysBetween(dateOfLoan.withTimeAtStartOfDay(), refundDate.withTimeAtStartOfDay()).getDays()
+    Days.daysBetween(dateOfLoan.withTimeAtStartOfDay(), refundDate.withTimeAtStartOfDay()).getDays
   }
 }

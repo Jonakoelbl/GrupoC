@@ -1,9 +1,7 @@
 package ar.edu.unq.desapp.view.model
 
-import ar.edu.unq.desapp.appModel.SignIn
 import org.apache.wicket.markup.html.form._
 import org.apache.wicket.markup.html.panel.FeedbackPanel
-import org.apache.wicket.model.CompoundPropertyModel
 
 class SignInPage extends HeadBlankPage {
 

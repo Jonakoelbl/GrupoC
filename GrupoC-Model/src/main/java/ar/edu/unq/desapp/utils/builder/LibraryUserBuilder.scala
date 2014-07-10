@@ -1,13 +1,9 @@
 package ar.edu.unq.desapp.utils.builder
 
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
-
-import ar.edu.unq.desapp.model.bean.Book
-import ar.edu.unq.desapp.model.bean.User
+import ar.edu.unq.desapp.model.bean.{Book, Librarian, User}
 import ar.edu.unq.desapp.model.management.LibrarySystem
-import ar.edu.unq.desapp.model.bean.Librarian
 
+import scala.collection.JavaConversions._
 
 abstract class LibraryUserBuilder[T <: LibraryUserBuilder[T, U], U] extends BuilderToTest[U] {
 

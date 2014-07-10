@@ -33,7 +33,7 @@ class LoanManagement(val notificationSystem: NotificationSystem, private val loa
       val loanBook = new LoanBook(new DateTime, refundDate)
       loanBook.user = anUser
       loanBook.book = aBook
-      borrowedBooks = (loanBook) :: borrowedBooks
+      borrowedBooks = loanBook :: borrowedBooks
 
       anUser.borrowBook(aBook)
     }
