@@ -14,7 +14,7 @@ class GenericService[T] extends Serializable {
     this.repository.save(obj)
   }
 
-  @Transactional(readOnly = true)
+  @Transactional
   def delete(obj: T) {
     this.repository.delete(obj)
   }

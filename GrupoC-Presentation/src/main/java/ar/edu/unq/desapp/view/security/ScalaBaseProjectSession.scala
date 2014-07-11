@@ -21,6 +21,10 @@ object ScalaBaseProjectSession {
   def getSession(): ScalaBaseProjectSession = {
     Session.get.asInstanceOf[ScalaBaseProjectSession]
   }
+
+  def getCurrentUser: User = {
+    getSession().userSession
+  }
 }
 
 @SerialVersionUID(1L)

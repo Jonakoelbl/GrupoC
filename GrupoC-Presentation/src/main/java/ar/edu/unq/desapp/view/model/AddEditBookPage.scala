@@ -8,7 +8,7 @@
  import org.apache.wicket.markup.html.form.{Button, Form, TextArea, TextField}
  import org.apache.wicket.markup.html.panel.FeedbackPanel
  import org.apache.wicket.model.CompoundPropertyModel
-
+ 
  class AddEditBookPage(book: Book) extends BasePage {
 
   // Parameter-less constructor
