@@ -16,7 +16,7 @@ class BookListAppModel(var bookService: BookService) extends Serializable with B
   }
 
   def getReservationsAmount(aBook: Book): Int = {
-    1//TODO
+    1//bookService.findById(aBook.id).amount
   }
 
   def reserveBook(aBook: Book) {

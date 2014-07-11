@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.model.bean
 
 import javax.persistence._
+import java.util
 
 import org.hibernate.annotations.IndexColumn
 
@@ -25,7 +26,7 @@ class User (
   @BeanProperty
   @ElementCollection(fetch = FetchType.EAGER)
   @IndexColumn(name = "id")
-  var rols: java.util.List[String] = _
+  var rols: java.util.List[String] = new util.ArrayList[String]
   
   @BeanProperty
   @OneToMany

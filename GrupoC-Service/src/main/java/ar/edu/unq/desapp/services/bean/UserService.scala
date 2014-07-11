@@ -38,9 +38,9 @@ class UserService extends GenericService[User] with UserDetailsService {
   @Transactional
   def loadDefaultUsers() {
     val user: User = new User("user", "user@email.com", "user")
-    user.setRols(List("ROLE_USER"))
+    user.addRole("ROLE_USER")
     val admin: User = new User("admin", "admin@email.com", "admin")
-    admin.setRols(List("ROLE_USER", "ROLE_ADMIN"))
+    admin.addRole("ROLE_USER", "ROLE_ADMIN")
     this.save(user)
     this.save(admin)
   }

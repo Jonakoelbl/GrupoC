@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.form.{Button, Form, TextField}
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.CompoundPropertyModel
 import org.apache.wicket.spring.injection.annot.SpringBean
-
 import scala.beans.BeanProperty
 
 class BasePage extends HeadBlankPage {
