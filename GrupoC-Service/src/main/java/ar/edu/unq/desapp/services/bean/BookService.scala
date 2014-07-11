@@ -15,9 +15,6 @@ import scala.collection.JavaConversions._
 class BookService extends GenericService[Book] {
 
   @BeanProperty @Resource
-  var bookRepository: BookRepository = _
-
-  @BeanProperty @Resource
   var loanBookRepository: LoanBookRepository = _
 
   def retriveAllMostBorrowed: java.util.List[Book] = {
