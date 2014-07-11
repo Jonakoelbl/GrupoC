@@ -10,7 +10,7 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.JavaConverters.asScalaBufferConverter
 
 @Entity @Table(name = "books")
-class Book (
+class Book(
   @BeanProperty
   var title: String,
   @BeanProperty
@@ -25,11 +25,12 @@ class Book (
   var amount: Int = 1,
   @BeanProperty
   var registrationDate: DateTime = new DateTime
-){
+) {
 
+  @BeanProperty
   @Id @GeneratedValue
   @Column(name = "id_book")
-  var id: Int = _
+  var id: Integer = _
 
   @OneToMany(cascade = Array{CascadeType.ALL}) @BeanProperty
   var comment: java.util.List[Comment] = new util.ArrayList[Comment]

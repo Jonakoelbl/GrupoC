@@ -1,12 +1,17 @@
 package ar.edu.unq.desapp.view.model
 
+import ar.edu.unq.desapp.services.bean.UserService
 import ar.edu.unq.desapp.view.security.ScalaBaseProjectSession
 import org.apache.wicket.markup.html.form.{Form, PasswordTextField, RequiredTextField}
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.html.panel.FeedbackPanel
 import org.apache.wicket.model.CompoundPropertyModel
+import scala.beans.BeanProperty
+import org.apache.wicket.spring.injection.annot.SpringBean
 
 class LoginPage extends HeadBlankPage {
+  @BeanProperty @SpringBean(name = "services.user")
+  var userService: UserService = _
 
   add(new LoginForm("loginform"))
 
@@ -27,7 +32,9 @@ class LoginPage extends HeadBlankPage {
     override def onSubmit() {
       val session = ScalaBaseProjectSession.getSession()
       if (session.signIn(loginObject.username, loginObject.password)) {
-        LoginForm.this.setResponsePage(classOf[HomePage])
+        val userSession = userService.findByUsername(loginObject.username)
+        session.setUserSession(userSession)
+        setResponsePage(classOf[HomePage])
       } else {
         error(getString("login_failed"))
       }
